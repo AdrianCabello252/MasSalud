@@ -19,6 +19,11 @@ public class DataOrden {
     private DataAfiliado idAfiliado;
     private DataPrestador prestador;
 
+    public DataOrden() {
+    }
+    
+    
+
     public DataOrden(int idOrden, LocalDate fecha, String formaPago, double importe, DataAfiliado idAfiliado, DataPrestador prestador) {
         this.idOrden = idOrden;
         this.fecha = fecha;

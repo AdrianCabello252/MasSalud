@@ -17,13 +17,8 @@ public class DataPrestador {
     private boolean activo;
     private DataEspecialidad especialidad;
 
-    public DataPrestador(int idPrestador, String nombre, String apellido, int dni, boolean activo, DataEspecialidad especialidad) {
-        this.idPrestador = idPrestador;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.dni = dni;
-        this.activo = activo;
-        this.especialidad = especialidad;
+    public DataPrestador() {
+        
     }
 
     public int getIdPrestador() {

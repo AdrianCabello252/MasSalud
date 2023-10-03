@@ -16,12 +16,8 @@ public class DataAfiliado {
     private int dni;
     private boolean activo;
 
-    public DataAfiliado(int idAfiliado, String nombre, String apellido, int dni, boolean activo) {
-        this.idAfiliado = idAfiliado;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.dni = dni;
-        this.activo = activo;
+    public DataAfiliado() {
+        
     }
 
     public int getIdAfiliado() {

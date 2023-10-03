@@ -13,9 +13,8 @@ public class DataEspecialidad {
     private int idEspecialidad;
     private String especialidad;
 
-    public DataEspecialidad(int idEspecialidad, String especialidad) {
-        this.idEspecialidad = idEspecialidad;
-        this.especialidad = especialidad;
+    public DataEspecialidad() {
+        
     }
 
     public int getIdEspecialidad() {
