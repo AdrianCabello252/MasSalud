@@ -10,37 +10,37 @@ public class Afiliado {
     private int dni;
     private String domicilio;
     private int telefono;
-    private boolean isActivo;
+    private boolean Activo;
 
     public Afiliado() {
     }
 
-    public Afiliado(int idAfiliado, String nombre, String apellido, int dni, String domicilio, int telefono, boolean isActivo) {
+    public Afiliado(int idAfiliado, String nombre, String apellido, int dni, String domicilio, int telefono, boolean Activo) {
         this.idAfiliado = idAfiliado;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.domicilio = domicilio;
         this.telefono = telefono;
-        this.isActivo = isActivo;
+        this.Activo = Activo;
     }
 
-    public Afiliado(String nombre, String apellido, int dni, String domicilio, int telefono, boolean isActivo) {
+    public Afiliado(String nombre, String apellido, int dni, String domicilio, int telefono, boolean Activo) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.domicilio = domicilio;
         this.telefono = telefono;
-        this.isActivo = isActivo;
+        this.Activo = Activo;
     }
 
-    public Afiliado(int idAfiliado, String nombre, String apellido, int dni, String domicilio, boolean isActivo) {
+    public Afiliado(int idAfiliado, String nombre, String apellido, int dni, String domicilio, boolean Activo) {
         this.idAfiliado = idAfiliado;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.domicilio = domicilio;
-        this.isActivo = isActivo;
+        this.Activo = Activo;
     }
 
     public int getIdAfiliado() {
@@ -91,12 +91,12 @@ public class Afiliado {
         this.telefono = telefono;
     }
 
-    public boolean isIsActivo() {
-        return isActivo;
+    public boolean setActivo() {
+        return Activo;
     }
 
-    public void setIsActivo(boolean isActivo) {
-        this.isActivo = isActivo;
+    public void setActivo(boolean Activo) {
+        this.Activo = Activo;
     }
     
     @Override

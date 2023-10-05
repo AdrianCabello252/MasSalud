@@ -29,7 +29,7 @@ public class AfiliadoData {
                  ps.setInt(3, afiliado.getDni());
                  ps.setString(4,afiliado.getDomicilio());
                  ps.setInt(5, afiliado.getTelefono());
-                 ps.setBoolean(6, afiliado.isIsActivo());
+                 ps.setBoolean(6, afiliado.setActivo());
                  ps.executeUpdate();
 
                  ResultSet rs=ps.getGeneratedKeys();
@@ -97,7 +97,7 @@ public class AfiliadoData {
                 afiliado.setDni(rs.getInt("dni"));
                 afiliado.setDomicilio(rs.getString("domicilio"));
                 afiliado.setTelefono(rs.getInt("telefono"));
-                afiliado.setEstado(true);
+                afiliado.setActivo(true);
                 listaAfiliados.add(afiliado); 
             }
         ps.close();
