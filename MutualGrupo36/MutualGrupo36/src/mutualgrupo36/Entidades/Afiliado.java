@@ -10,37 +10,37 @@ public class Afiliado {
     private int dni;
     private String domicilio;
     private int telefono;
-    private boolean estado;
+    private boolean isActivo;
 
     public Afiliado() {
     }
 
-    public Afiliado(int idAfiliado, String nombre, String apellido, int dni, String domicilio, int telefono, boolean estado) {
+    public Afiliado(int idAfiliado, String nombre, String apellido, int dni, String domicilio, int telefono, boolean isActivo) {
         this.idAfiliado = idAfiliado;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.domicilio = domicilio;
         this.telefono = telefono;
-        this.estado = estado;
+        this.isActivo = isActivo;
     }
 
-    public Afiliado(String nombre, String apellido, int dni, String domicilio, int telefono, boolean estado) {
+    public Afiliado(String nombre, String apellido, int dni, String domicilio, int telefono, boolean isActivo) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.domicilio = domicilio;
         this.telefono = telefono;
-        this.estado = estado;
+        this.isActivo = isActivo;
     }
 
-    public Afiliado(int idAfiliado, String nombre, String apellido, int dni, String domicilio, boolean estado) {
+    public Afiliado(int idAfiliado, String nombre, String apellido, int dni, String domicilio, boolean isActivo) {
         this.idAfiliado = idAfiliado;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.domicilio = domicilio;
-        this.estado = estado;
+        this.isActivo = isActivo;
     }
 
     public int getIdAfiliado() {
@@ -91,12 +91,12 @@ public class Afiliado {
         this.telefono = telefono;
     }
 
-    public boolean isEstado() {
-        return estado;
+    public boolean isIsActivo() {
+        return isActivo;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
+    public void setIsActivo(boolean isActivo) {
+        this.isActivo = isActivo;
     }
     
     @Override
