@@ -47,7 +47,7 @@ public class AfiliadoData {
     
     public void modificarAfiliado(Afiliado afiliado){
         
-        String sql="UPDATE afiliado SET (nombre=?, apellido=?, dni=?, domicilio=?, telefono=?) where idAfiliado=? ";
+        String sql="UPDATE afiliado SET nombre=?, apellido=?, dni=?, domicilio=?, telefono=? where idAfiliado=? ";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setString(1, afiliado.getNombre());
@@ -84,7 +84,7 @@ public class AfiliadoData {
     }
     
     public List<Afiliado> listarAfiliados(){ 
-        String sql="SELECT FROM afiliado (idAfiliado, nombre, apellido, dni, domicilio,telefono) WHERE estado=1";
+        String sql="SELECT idAfiliado, nombre, apellido, dni, domicilio,telefono FROM afiliado WHERE estado=1";
         ArrayList<Afiliado> listaAfiliados= new ArrayList<>(); 
         try {
         PreparedStatement ps=con.prepareStatement (sql);
