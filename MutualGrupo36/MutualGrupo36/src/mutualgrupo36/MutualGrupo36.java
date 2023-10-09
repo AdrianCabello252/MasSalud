@@ -11,10 +11,10 @@ public class MutualGrupo36 {
     public static void main(String[] args) {
          AfiliadoData afiData=new AfiliadoData();//para usar metodos de alumno data
 //    Prueba agregar
-        Afiliado martin=new Afiliado(3,"Martin","Bada",35465433,"Bogota 4335",2435465,true);
-//        afiData.guardaAfiliado(martin);
+        Afiliado afiliado=new Afiliado("Soza","Mariela",11222444,"Lacarra 222",1574457556,true);
+//        afiData.guardarAfiliado(afiliado);
 //    Prueba buscar id
-//        Afiliado afiliadoencontrado= afiData.buscarAfiliado(3);
+//        Afiliado afiliadoencontrado= afiData.buscarAfiliado(2);
 //        System.out.println("DNI "+afiliadoencontrado.getDni());
 //        System.out.println("Apellido "+afiliadoencontrado.getApellido());
 //    Prueba listar
@@ -25,7 +25,7 @@ public class MutualGrupo36 {
 //        }
 //        afiData.listarAfiliados();
 //    Prueba modificar
-//        afiData.modificarAfiliado(martin);
+//        afiData.modificarAfiliado(afiliado);
 //    prueba eliminar
 //        afiData.borrarAfiliado(2);
     }

@@ -19,9 +19,8 @@ public class AfiliadoData {
          con=Conexion.getConexion();
      }
      
-    public void guardaAfiliado(Afiliado afiliado){
-        String sql="INSERT INTO afiliado(nombre,apellido,dni,domicilio,telefono,estado)"
-                    + " VALUES(?,?,?,?,?,?) ";
+    public void guardarAfiliado(Afiliado afiliado){
+        String sql= "INSERT INTO afiliado (nombre, apellido, dni, domicilio, telefono, estado) VALUES (?, ?, ?, ?, ?, ?)";
             try {
                  PreparedStatement ps=con.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
                  ps.setString(1, afiliado.getNombre());
@@ -43,7 +42,8 @@ public class AfiliadoData {
                 JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de afiliados");
                 }
     }
-    
+     
+
     
     public void modificarAfiliado(Afiliado afiliado){
         

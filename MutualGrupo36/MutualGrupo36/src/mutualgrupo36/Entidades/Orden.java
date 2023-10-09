@@ -8,14 +8,14 @@ public class Orden {
     private int idOrden;
     Afiliado afiliado;
     Prestador prestador;
-    private int fecha;
+    private LocalDate fecha;
     private String formaDePago;
     private double importe;
 
     public Orden() {
     }
 
-    public Orden(Afiliado afiliado, Prestador prestador, int fecha, String formaDePago, double importe) {
+    public Orden(Afiliado afiliado, Prestador prestador, LocalDate fecha, String formaDePago, double importe) {
         this.afiliado = afiliado;
         this.prestador = prestador;
         this.fecha = fecha;
@@ -23,7 +23,7 @@ public class Orden {
         this.importe = importe;
     }
 
-    public Orden(int idOrden, Afiliado afiliado, Prestador prestador, int fecha, String formaDePago, double importe) {
+    public Orden(int idOrden, Afiliado afiliado, Prestador prestador, LocalDate fecha, String formaDePago, double importe) {
         this.idOrden = idOrden;
         this.afiliado = afiliado;
         this.prestador = prestador;
@@ -56,11 +56,11 @@ public class Orden {
         this.prestador = prestador;
     }
 
-    public int getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(int fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
