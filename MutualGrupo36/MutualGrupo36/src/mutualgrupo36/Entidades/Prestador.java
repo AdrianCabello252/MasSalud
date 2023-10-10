@@ -96,7 +96,7 @@ public class Prestador {
         this.estado = estado;
     }
     
-   @Override
+    @Override
     public String toString() {
     return nombre+", "+dni+", "+especialidad;
     }
