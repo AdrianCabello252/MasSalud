@@ -12,13 +12,14 @@ import mutualgrupo36.Entidades.Prestador;
 
 public class PrestadorData {
     private Connection connection;
+    private EspecialidadData esData;
 
     public PrestadorData(Connection connection) {
         this.connection = connection;
     }
 
     public void guardarPrestador(Prestador prestador) {
-        String sql= "INSERT INTO prestador (nombre, dni, domicilio, telefono, especialidad, estado)"
+        String sql= "INSERT INTO prestador (nombre, dni, domicilio, telefono, idEspecialidad, estado)"
                 + " VALUES (?, ?, ?, ?, ?, ?)";
         try {
                  PreparedStatement ps=connection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
@@ -26,8 +27,8 @@ public class PrestadorData {
                  ps.setInt(2, prestador.getDni());
                  ps.setString(3,prestador.getDomicilio());
                  ps.setInt(4, prestador.getTelefono());
-                 ps.setString(5, prestador.getIdEspecialidad());
-                 ps.setBoolean(6, prestador.setEstado());
+                 ps.setInt(5, prestador.getEspecialidad().getIdEspecialidad());
+                 ps.setBoolean(6, prestador.isEstado());
                  ps.executeUpdate();
 
                  ResultSet rs=ps.getGeneratedKeys();
@@ -43,10 +44,10 @@ public class PrestadorData {
     }
 
     public void modificarPrestador(Prestador prestador) {
-        String query = "UPDATE Prestadores SET nombre = ?, especialidad = ? WHERE telefono = ?";
+        String query = "UPDATE Prestadores SET nombre = ?, idEspecialidad = ? WHERE telefono = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, prestador.getNombre());
-            stmt.setString(2, prestador.getIdEspecialidad()); // Ajusta esto según tus campos
+            stmt.setInt(5, prestador.getEspecialidad().getIdEspecialidad()); // Ajusta esto según tus campos
             stmt.setInt(3, prestador.getTelefono());
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -54,21 +55,52 @@ public class PrestadorData {
         }
     }
 
-    public Prestador buscarPrestador(int id) {
-        String query = "SELECT * FROM Prestadores WHERE id = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setInt(1, id);
-            ResultSet resultSet = stmt.executeQuery();
-            if (resultSet.next()) {
-                String nombre = resultSet.getString("nombre");
-                String especialidad = resultSet.getString("especialidad"); // Ajusta esto según tus campos
-                return new Prestador(id, nombre, especialidad);
-            }
+//    public Prestador buscarPrestador(int id) {
+//        String query = "SELECT * FROM Prestadores WHERE id = ?";
+//        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+//            stmt.setInt(1, id);
+//            ResultSet resultSet = stmt.executeQuery();
+//            if (resultSet.next()) {
+//                String nombre = resultSet.getString("nombre");
+//                String especialidad = resultSet.getString("especialidad"); // Ajusta esto según tus campos
+//                return new Prestador(id, nombre, especialidad);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return null; 
+//    }
+    
+    public Prestador buscarPrestador(int idPrestador) {
+    String query = "SELECT * FROM Prestador WHERE idPrestador = ?";
+    try (PreparedStatement stmt = connection.prepareStatement(query)) {
+        stmt.setInt(1, idPrestador);
+        ResultSet resultSet = stmt.executeQuery();
+        if (resultSet.next()) {
+            String nombre = resultSet.getString("nombre");
+            int dni = resultSet.getInt("dni");
+            String domicilio = resultSet.getString("domicilio");
+            int telefono = resultSet.getInt("telefono");
+            int idEspecialidad = resultSet.getInt("idEspecialidad"); 
+            boolean estado = resultSet.getBoolean("estado");
+
+            Prestador prestador = new Prestador();
+            prestador.setIdPrestador(idPrestador);
+            prestador.setNombre(nombre);
+            prestador.setDni(dni);
+            prestador.setDomicilio(domicilio);
+            prestador.setTelefono(telefono);
+            prestador.setEspecialidad(esData.buscarEspecialidad(resultSet.getInt("idEspecialidad")));
+            prestador.setEstado(estado);
+
+            return prestador;
+        }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null; 
+        return null;
     }
+
 
     public void eliminarPrestador(int id) {
         String query = "DELETE FROM Prestadores WHERE id = ?";
@@ -86,10 +118,10 @@ public class PrestadorData {
         try (PreparedStatement stmt = connection.prepareStatement(query);
              ResultSet resultSet = stmt.executeQuery()) {
             while (resultSet.next()) {
+                Prestador prestador = new Prestador();
                 int id = resultSet.getInt("id");
                 String nombre = resultSet.getString("nombre");
-                String especialidad = resultSet.getString("especialidad"); // Ajusta esto según tus campos
-                Prestador prestador = new Prestador(id, nombre, especialidad);
+                int idEspecialidad = resultSet.getInt("idEspecialidad"); 
                 prestadores.add(prestador);
             }
         } catch (SQLException e) {
@@ -97,4 +129,6 @@ public class PrestadorData {
         }
         return prestadores;
     }
+    
+
 }
