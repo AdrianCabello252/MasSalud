@@ -6,12 +6,14 @@
 package mutualgrupo36;
 import Datos.AfiliadoData;
 import mutualgrupo36.Entidades.Afiliado;
+import Datos.EspecialidadData;
+import mutualgrupo36.Entidades.Especialidad;
 public class MutualGrupo36 {
  
     public static void main(String[] args) {
-         AfiliadoData afiData=new AfiliadoData();//para usar metodos de alumno data
+//         AfiliadoData afiData=new AfiliadoData();//para usar metodos de alumno data
 //    Prueba agregar
-        Afiliado afiliado=new Afiliado("Soza","Mariela",11222444,"Lacarra 222",1574457556,true);
+//        Afiliado afiliado=new Afiliado("Soza","Mariela",11222444,"Lacarra 222",1574457556,true);
 //        afiData.guardarAfiliado(afiliado);
 //    Prueba buscar id
 //        Afiliado afiliadoencontrado= afiData.buscarAfiliado(2);
@@ -28,6 +30,19 @@ public class MutualGrupo36 {
 //        afiData.modificarAfiliado(afiliado);
 //    prueba eliminar
 //        afiData.borrarAfiliado(2);
+    EspecialidadData espeData=new EspecialidadData();
+    Especialidad dentis=new Especialidad("Oculista");
+//      Pruba agregar    
+//      espeData.guardarEspecialidad(dentis);
+//      Prueba buscar id
+//      Especialidad espeEncon=espeData.buscarEspecialidad(3);
+//        System.out.println("Id: "+espeEncon.getIdEspecialidad());
+//        System.out.println("Especialidad: "+espeEncon.getTipoEspecialidad());
+//      Prueba listar
+        for(Especialidad espec:espeData.listarEspecialidad()){
+            System.out.println(espec.getIdEspecialidad());
+            System.out.println(espec.getTipoEspecialidad());
+        }
     }
     }
     

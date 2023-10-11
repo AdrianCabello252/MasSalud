@@ -42,7 +42,7 @@ public class EspecialidadData {
         }
     }
     
-    public List<Especialidad> listarEspecualidad(){
+    public List<Especialidad> listarEspecialidad(){
          String sql="SELECT * FROM `especialidad` WHERE 1";
         ArrayList<Especialidad> especie= new ArrayList<>();
         try {
