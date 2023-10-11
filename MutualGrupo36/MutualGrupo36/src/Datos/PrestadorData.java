@@ -11,11 +11,11 @@ import javax.swing.JOptionPane;
 import mutualgrupo36.Entidades.Prestador;
 
 public class PrestadorData {
-    private Connection connection;
+    private Connection connection=null;
     private EspecialidadData esData;
 
-    public PrestadorData(Connection connection) {
-        this.connection = connection;
+    public PrestadorData() {
+        connection=Conexion.getConexion();
     }
 
     public void guardarPrestador(Prestador prestador) {

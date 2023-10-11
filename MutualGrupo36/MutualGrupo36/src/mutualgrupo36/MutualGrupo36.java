@@ -8,6 +8,8 @@ import Datos.AfiliadoData;
 import mutualgrupo36.Entidades.Afiliado;
 import Datos.EspecialidadData;
 import mutualgrupo36.Entidades.Especialidad;
+import Datos.PrestadorData;
+import mutualgrupo36.Entidades.Prestador;
 public class MutualGrupo36 {
  
     public static void main(String[] args) {
@@ -30,8 +32,10 @@ public class MutualGrupo36 {
 //        afiData.modificarAfiliado(afiliado);
 //    prueba eliminar
 //        afiData.borrarAfiliado(2);
-    EspecialidadData espeData=new EspecialidadData();
-    Especialidad dentis=new Especialidad("Oculista");
+
+
+//    EspecialidadData espeData=new EspecialidadData();
+//    Especialidad dentis=new Especialidad("Oculista");
 //      Pruba agregar    
 //      espeData.guardarEspecialidad(dentis);
 //      Prueba buscar id
@@ -39,10 +43,13 @@ public class MutualGrupo36 {
 //        System.out.println("Id: "+espeEncon.getIdEspecialidad());
 //        System.out.println("Especialidad: "+espeEncon.getTipoEspecialidad());
 //      Prueba listar
-        for(Especialidad espec:espeData.listarEspecialidad()){
-            System.out.println(espec.getIdEspecialidad());
-            System.out.println(espec.getTipoEspecialidad());
-        }
+//        for(Especialidad espec:espeData.listarEspecialidad()){
+//            System.out.println(espec.getTipoEspecialidad());
+//        }
+
+
+        PrestadorData presData=new PrestadorData();//para usar metodos de prestador data
+        Prestador romero=new Prestador("Romero", 234567567, "Malabia 32345", 5559685, 2, true);
     }
     }
     

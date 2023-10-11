@@ -30,8 +30,8 @@ public class Prestador {
         this.estado = estado;
     }
 
-    public Prestador(int idPrestador, String nombre, int dni, String domicilio, int telefono, Especialidad especialidad, boolean estado) {
-        this.idPrestador = idPrestador;
+    public Prestador(String nombre, int dni, String domicilio, int telefono, Especialidad especialidad, boolean estado) {
+       
         this.nombre = nombre;
         this.dni = dni;
         this.domicilio = domicilio;
