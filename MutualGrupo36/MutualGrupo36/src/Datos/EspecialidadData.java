@@ -59,23 +59,24 @@ public class EspecialidadData {
         return especie;
     }
     
-    /*public void buscarEspecialidad(String espec){
-        for(Especialidad especi:listarEspecualidad()){
-            
-            if(especi.getTipoEspecialidad().startsWith(jtNombre.getText())){
-                modelo.addRow(new Object[]{
-                    especi.getIdEspecialidad(),
-                    especi.getTipoEspecialidad()
-                });
+    public Especialidad buscarEspecialidad(int idEspec){
+        String sql="select especialidad FROM especialidad WHERE idEspecialidad=?";
+         Especialidad especialidad=null;
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, idEspec);
+            ResultSet rs=ps.executeQuery();
+            if(rs.next()){
+                especialidad=new Especialidad();
+             especialidad.setIdEspecialidad(idEspec);
+                especialidad.setTipoEspecialidad(rs.getString("especialidad"));
+             }else{
+                 JOptionPane.showMessageDialog(null, "No existe especialidad");
+             }
+             ps.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla afiliados");
             }
-        }
-    }  //metodo para vistas
-    
-    public void borrarFila(){
-        int f=jtTabla.getRowCount()-1;
-        for(;f>=0;f--){
-            modelo.removeRow(f);
-        }
-    }*/  //metodo para vistas
-    
+        return especialidad;
+    }
 }
