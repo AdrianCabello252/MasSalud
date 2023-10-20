@@ -10,7 +10,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import mutualgrupo36.Entidades.Afiliado;
+import mutualgrupo36.Entidades.Especialidad;
 import mutualgrupo36.Entidades.Orden;
+import mutualgrupo36.Entidades.Prestador;
 
 
 public class OrdenData {
@@ -34,9 +37,7 @@ public class OrdenData {
             ps.setString(4,orden.getFormaDePago());
             ps.setDouble(5, orden.getImporte());
             ps.executeUpdate();
-
             ResultSet rs=ps.getGeneratedKeys();
-
            if (rs.next()) {
                 orden.setIdOrden(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Orden guardada con éxito.");
@@ -52,7 +53,10 @@ public class OrdenData {
     
     
     public void modificarOrden(Orden orden){
-        
+        if (orden == null || orden.getAfiliado() == null || orden.getPrestador() == null) {
+            JOptionPane.showMessageDialog(null, "No se proporcionaron datos válidos para modificar la orden.");
+            return;
+        }
         String sql="UPDATE orden SET idAfiliado=?, idPrestador=?, fecha=?, formaDePago=?, importe=? where idOrden=? ";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
@@ -61,32 +65,35 @@ public class OrdenData {
             ps.setDate(3,Date.valueOf(orden.getFecha()));
             ps.setString(4,orden.getFormaDePago());
             ps.setDouble(5, orden.getImporte());
+            ps.setInt(6, orden.getIdOrden()); 
             int exito=ps.executeUpdate();
             if(exito==1){
                 JOptionPane.showMessageDialog(null, "orden modificada exitosamente");
             }
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'orden' ");
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'orden'" +ex.getMessage());
             }
+
     }
     
-    
-    public void borrarOrden(int idOrden){
-        String sql="update orden SET estado=0 WHERE idOrden = ? ";
-        try {
-             PreparedStatement ps=con.prepareStatement(sql);
-             ps.setInt(1, idOrden);
-             int exito=ps.executeUpdate();
-             if(exito==1){
-                JOptionPane.showMessageDialog(null, "Orden eliminada exitosamente");
-             }else{
-                 JOptionPane.showMessageDialog(null, "Orden no encontrado");
-             }
-             ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'orden' ");
-            }
+    public void eliminarOrden(int idOrden) {
+    String sql = "DELETE FROM orden WHERE idOrden = ?";
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idOrden);
+        int exito = ps.executeUpdate();
+        if (exito == 1) {
+            JOptionPane.showMessageDialog(null, "Orden eliminada exitosamente");
+        } else {
+            JOptionPane.showMessageDialog(null, "Orden no encontrado");
+        }
+        ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'orden' ");
     }
+}
+   
     
     public Orden buscarOrden(int idOrden){
         String sql="select * from orden where idOrden=?";
@@ -113,29 +120,29 @@ public class OrdenData {
     }
     
     
-    
     public List<Orden> listarOrdenesXAfiliado(int idAfiliado) {
         List<Orden> ordenesAfiliado = new ArrayList<>();
-
         try {
-            String sql = "SELECT idOrden, idPrestador, fecha, importe FROM orden WHERE idAfiliado = ?";
+            String sql = "SELECT * FROM orden WHERE idAfiliado = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAfiliado); 
-
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Orden orden = new Orden();
-
                 orden.setIdOrden(rs.getInt("idOrden"));
-                orden.setPrestador(presData.buscarPrestador(rs.getInt("idPrestador")));
+                Afiliado afiliado = new Afiliado(); 
+                afiliado.setIdAfiliado(rs.getInt("idAfiliado"));
+                orden.setAfiliado(afiliado);
+                Prestador prestador = new Prestador(); 
+                prestador.setIdPrestador(rs.getInt("idPrestador"));
+                orden.setPrestador(prestador);
                 orden.setFecha(rs.getDate("fecha").toLocalDate());
+                orden.setFormaDePago(rs.getString("FormaDePago"));
                 orden.setImporte(rs.getDouble("importe"));
                 ordenesAfiliado.add(orden);
             }
-
             rs.close();
             ps.close();
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'orden': " + ex.getMessage());
         }
@@ -143,28 +150,30 @@ public class OrdenData {
     }
 
     
+    
     public List<Orden> listarOrdenesXPrestador(int idPrestador) {
         List<Orden> ordenesPrestador = new ArrayList<>();
-
         try {
-            String sql = "SELECT idOrden, idAfiliado, fecha, importe FROM orden WHERE idPrestador = ?";
+            String sql = "SELECT * FROM orden WHERE idPrestador = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idPrestador); 
-
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Orden orden = new Orden();
-
                 orden.setIdOrden(rs.getInt("idOrden"));
-                orden.setAfiliado(afiData.buscarAfiliado(rs.getInt("idAfililado")));
+                Afiliado afiliado = new Afiliado(); 
+                afiliado.setIdAfiliado(rs.getInt("idAfiliado"));
+                orden.setAfiliado(afiliado);
+                Prestador prestador = new Prestador(); 
+                prestador.setIdPrestador(rs.getInt("idPrestador"));
+                orden.setPrestador(prestador);
                 orden.setFecha(rs.getDate("fecha").toLocalDate());
+                orden.setFormaDePago(rs.getString("FormaDePago"));
                 orden.setImporte(rs.getDouble("importe"));
                 ordenesPrestador.add(orden);
             }
-
             rs.close();
             ps.close();
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'orden': " + ex.getMessage());
         }
@@ -173,89 +182,60 @@ public class OrdenData {
     
     
     
-//   public List<Orden> listarOrdenesXFecha(LocalDate fecha) {
-//        List<Orden> ordenesFecha = new ArrayList<>();
-//
-//        try {
-//            String sql = "SELECT * FROM orden WHERE fecha = ?";
-//            PreparedStatement ps = con.prepareStatement(sql);
-//
-//            ResultSet rs = ps.executeQuery();
-//            while (rs.next()) {
-//                Orden orden = new Orden();
-//
-//                orden.setIdOrden(rs.getInt("idOrden"));
-//                orden.setAfiliado(afiData.buscarAfiliado(rs.getInt("idAfililado")));
-//                orden.setPrestador(presData.buscarPrestador(rs.getInt("idPrestador")));
-//                orden.setFecha(rs.getDate("fecha").toLocalDate());
-//                orden.setImporte(rs.getDouble("importe"));
-//                ordenesFecha.add(orden);
-//            }
-//
-//            rs.close();
-//            ps.close();
-//
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'orden': " + ex.getMessage());
-//        }
-//        return ordenesFecha;
-//    }
-    
-    
-    public List<Orden> listarOrdenesXFecha(LocalDate fecha) {
-    List<Orden> ordenesFecha = new ArrayList<>();
-
-    try {
-        String sql = "SELECT * FROM orden WHERE fecha = ?";
-        PreparedStatement ps = con.prepareStatement(sql);
-        
-        java.sql.Date fechaSQL = java.sql.Date.valueOf(fecha);
-        ps.setDate(1, fechaSQL); 
-
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
-            Orden orden = new Orden();
-
-            orden.setIdOrden(rs.getInt("idOrden"));
-            orden.setAfiliado(afiData.buscarAfiliado(rs.getInt("idAfiliado")));
-            orden.setPrestador(presData.buscarPrestador(rs.getInt("idPrestador")));
-            orden.setFecha(rs.getDate("fecha").toLocalDate());
-            orden.setImporte(rs.getDouble("importe"));
-            ordenesFecha.add(orden);
-        }
-
-        rs.close();
-        ps.close();
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'orden': " + ex.getMessage());
+    public List<Orden> listarOrdenesXFecha(LocalDate fecha) {  
+        List<Orden> ordenesFecha = new ArrayList<>();
+        String query = "SELECT * FROM orden WHERE fecha = ?";
+        try (PreparedStatement ps = con.prepareStatement(query)) {
+            java.sql.Date fechaSQL = java.sql.Date.valueOf(fecha); // Convierte LocalDate a java.sql.Date
+            ps.setDate(1, fechaSQL); // Establece el valor de la fecha en la consulta
+            try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Orden orden = new Orden();
+                orden.setIdOrden(rs.getInt("idOrden"));
+                Afiliado afiliado = new Afiliado(); 
+                afiliado.setIdAfiliado(rs.getInt("idAfiliado"));
+                orden.setAfiliado(afiliado);
+                Prestador prestador = new Prestador(); 
+                prestador.setIdPrestador(rs.getInt("idPrestador"));
+                orden.setPrestador(prestador);
+                orden.setFecha(rs.getDate("fecha").toLocalDate());
+                orden.setFormaDePago(rs.getString("FormaDePago"));
+                orden.setImporte(rs.getDouble("importe"));
+                ordenesFecha.add(orden);
+            }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return ordenesFecha;
     }
 
+
     
-    public List<Orden> obtenerAfiliadosXPrestador(int idPrestador, int idAfiliado){  
+    public List<Orden> listarOrdenesAfiliadoPrestador(int idPrestador, int idAfiliado){  
         List<Orden> ordenesAfiliadoPrestador = new ArrayList<>();
         try {
             String sql = "SELECT * FROM orden WHERE idAfiliado=? AND idPrestador = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idPrestador); 
-            ps.setInt(1, idAfiliado); 
-            
+            ps.setInt(2, idAfiliado); 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Orden orden = new Orden();
-
                 orden.setIdOrden(rs.getInt("idOrden"));
-                orden.setAfiliado(afiData.buscarAfiliado(rs.getInt("idAfililado")));
+                Afiliado afiliado = new Afiliado(); 
+                afiliado.setIdAfiliado(rs.getInt("idAfiliado"));
+                orden.setAfiliado(afiliado);
+                Prestador prestador = new Prestador(); 
+                prestador.setIdPrestador(rs.getInt("idPrestador"));
+                orden.setPrestador(prestador);
                 orden.setFecha(rs.getDate("fecha").toLocalDate());
+                orden.setFormaDePago(rs.getString("FormaDePago"));
                 orden.setImporte(rs.getDouble("importe"));
                 ordenesAfiliadoPrestador.add(orden);
             }
-
             rs.close();
             ps.close();
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'orden': " + ex.getMessage());
         }
