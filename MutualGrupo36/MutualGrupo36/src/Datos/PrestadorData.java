@@ -104,7 +104,29 @@ public class PrestadorData {
     return prestador;
     }
 
+    public Prestador buscarPrestadorPorEspecialidad(Especialidad especiali) {
+    String query = "SELECT idPrestador,nombre,dni,domicilio FROM Prestador WHERE idEspecialidad = ?";
+    Prestador prestador = null;
 
+    try (PreparedStatement stmt = con.prepareStatement(query)) {
+        Especialidad especialidad = new Especialidad(); //
+        stmt.setEspecialidad(1, idEspecialidad);        // cosas a arreglar para que funcione
+        prestador.setEspecialidad(especialidad);    //
+        ResultSet resultSet = stmt.executeQuery();
+
+        if (resultSet.next()) {
+        prestador = new Prestador();
+        prestador.setIdPrestador(resultSet.getInt("idPrestador"));
+        prestador.setNombre(resultSet.getString("nombre"));
+        prestador.setDni(resultSet.getInt("dni")); 
+        prestador.setDomicilio(resultSet.getString("domicilio")); 
+        }
+        
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, e.getMessage());
+    }
+    return prestador;
+    }
     
     public void eliminarPrestador(int idPrestador) {
         String query = "DELETE FROM Prestador WHERE idPrestador = ?";
