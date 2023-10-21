@@ -19,6 +19,7 @@ import javax.swing.SwingUtilities;
 import mutualgrupo36.Entidades.Especialidad;
 import mutualgrupo36.Entidades.Orden;
 import mutualgrupo36.Entidades.Prestador;
+import Vistas.PrestadorMedVista;
 public class MutualGrupo36 {
  
     public static void main(String[] args) {
@@ -44,7 +45,7 @@ public class MutualGrupo36 {
 //Prueba eliminar
 //        afiData.borrarAfiliado(2);
 
-//    EspecialidadData esData=new EspecialidadData();
+    EspecialidadData esData=new EspecialidadData();
 //    Especialidad dentis=new Especialidad("Oculista");
 //Pruba agregar    
 //      espeData.guardarEspecialidad(dentis);
@@ -58,9 +59,9 @@ public class MutualGrupo36 {
 //            System.out.println(espec.getTipoEspecialidad());
 //        }
       
-        EspecialidadData esData = new EspecialidadData();
-        Especialidad especialidad = esData.buscarEspecialidad(2);
-        PrestadorData presData = new PrestadorData();
+
+//    Especialidad especialidad = esData.buscarEspecialidad(2);
+    PrestadorData presData = new PrestadorData();
 //        Prestador prestador = new Prestador(4,"Gustavo", 25227661, "Salta 250", 1577230815 ,especialidad, true);
 //Pruba agregar    
 //      presData.guardarPrestador(prestador);
@@ -82,8 +83,17 @@ public class MutualGrupo36 {
 //        } 
 //Prueba desactivarPrestador      
 //      presData.desactivarPrestador(2);
-
-
+//Prueba BuscarPrestadorPorEspecialidad
+//    Especialidad cardiologia = new Especialidad(5, "cardiologia");
+//    List<Prestador> prestadoresPorEspecialidad = presData.buscarPrestadorPorEspecialidad(cardiologia.getIdEspecialidad());
+//        for (Prestador prestador : prestadoresPorEspecialidad) {
+//          System.out.println(" ");
+//          System.out.println(prestador.getDni());
+//          System.out.println(prestador.getNombre());
+//          System.out.println(prestador.getDomicilio());
+//        }
+// 
+          
 
 
 //Prueba Guardar Orden
@@ -139,26 +149,51 @@ public class MutualGrupo36 {
 
 
 
-//Prueba para abrir Vistas:
+////Prueba para abrir Vistas: Orden
+//        SwingUtilities.invokeLater(() -> {
+//        // Crear un JFrame para contener el JDesktopPane
+//        JFrame frame = new JFrame("Prueba de OrdenVista");
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setSize(800, 600);
+//
+//        // Crear un JDesktopPane
+//        JDesktopPane desktop = new JDesktopPane();
+//
+//        // Crear un JInternalFrame (OrdenVista) y agregarlo al JDesktopPane
+//        JInternalFrame ordenVistaFrame = new OrdenVista();
+//        desktop.add(ordenVistaFrame);
+//
+//        // Configurar el tamaño y posición del JInternalFrame
+//        ordenVistaFrame.setSize(400, 300);
+//        ordenVistaFrame.setLocation(200, 150);
+//
+//        // Hacer visible el JInternalFrame
+//        ordenVistaFrame.setVisible(true);
+//
+//        // Agregar el JDesktopPane al JFrame
+//        frame.add(desktop);
+//
+//        // Hacer visible el JFrame
+//        frame.setVisible(true);
+//    });
+        
+        
+    ////Prueba para abrir Vistas: Prestador    
         SwingUtilities.invokeLater(() -> {
         // Crear un JFrame para contener el JDesktopPane
-        JFrame frame = new JFrame("Prueba de OrdenVista");
+        JFrame frame = new JFrame("Prueba de PrestadorMedVista");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
 
-        // Crear un JDesktopPane
         JDesktopPane desktop = new JDesktopPane();
-
-        // Crear un JInternalFrame (OrdenVista) y agregarlo al JDesktopPane
-        JInternalFrame ordenVistaFrame = new OrdenVista();
-        desktop.add(ordenVistaFrame);
-
-        // Configurar el tamaño y posición del JInternalFrame
-        ordenVistaFrame.setSize(400, 300);
-        ordenVistaFrame.setLocation(200, 150);
+        JInternalFrame PrestadorMedVistaFrame = new PrestadorMedVista();
+        desktop.add(PrestadorMedVistaFrame);
+        
+        PrestadorMedVistaFrame.setSize(400, 300);
+        PrestadorMedVistaFrame.setLocation(200, 150);
 
         // Hacer visible el JInternalFrame
-        ordenVistaFrame.setVisible(true);
+        PrestadorMedVistaFrame.setVisible(true);
 
         // Agregar el JDesktopPane al JFrame
         frame.add(desktop);

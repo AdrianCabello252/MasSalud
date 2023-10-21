@@ -1,5 +1,5 @@
 
-package vistas;
+package Vistas;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
@@ -12,13 +12,15 @@ import java.util.List;
 public class PrestadorMedVista extends javax.swing.JInternalFrame {
     EspecialidadData espeData= new EspecialidadData();
     DefaultTableModel P;
+    DefaultComboBoxModel<Especialidad> model;
+    
     public PrestadorMedVista() {
         initComponents();
         setTitle("MasSalud SRL");
         P = new DefaultTableModel(); 
-        jTable1.setModel(P); 
-        cargarCombo();
+        jTable1.setModel(P);
         armarCabecera();
+        cargarCombo();
     }
 
     @SuppressWarnings("unchecked")
@@ -30,12 +32,13 @@ public class PrestadorMedVista extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
+        setClosable(true);
+        setMaximizable(true);
+
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Prestador Medico");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[DefaultComboBoxModel]" }));
-        jComboBox1.setSelectedIndex(-1);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -59,10 +62,6 @@ public class PrestadorMedVista extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(201, 201, 201))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -72,6 +71,10 @@ public class PrestadorMedVista extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(201, 201, 201))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,35 +97,52 @@ public class PrestadorMedVista extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<Especialidad> jComboBox1;
+    public javax.swing.JComboBox<Especialidad> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-private void cargarCombo(){
-        EspecialidadData especialidadData = new EspecialidadData();
+
+    
+    private void cargarCombo(){
+        
+        model = new DefaultComboBoxModel<>();
+        jComboBox1.setModel(model);
+
+        EspecialidadData espeData = new EspecialidadData();
         List<Especialidad> listaEspecialidades = espeData.listarEspecialidad();
 
-        DefaultComboBoxModel<Especialidad> model = new DefaultComboBoxModel<>(listaEspecialidades.toArray(new Especialidad[0]));
-        jComboBox1.setModel(model);
-}
-
-private void armarCabecera(){
-    P.addColumn("ID ");
-    P.addColumn("Nombre");
-    P.addColumn("Domicilio");
-    P.addColumn("Telefono");
-    jTable1.setModel(P);
-    P.setRowCount(0);
-}
-private void cargarDatos(){
-    PrestadorData prestadorData = new PrestadorData();
-    Especialidad especialidadSeleccionada = (Especialidad) jComboBox1.getSelectedItem();
-    List<Prestador> prestadores = prestadorData.buscarPrestadorPorEspecialidad(especialidadSeleccionada.getIdEspecialidad());
-    P.setRowCount(0);
-
-        for (Prestador prestador : prestadores) {
-            P.addRow(new Object[]{prestador.getIdPrestador(), prestador.getNombre(),prestador.getDomicilio(),prestador.getTelefono()});
+        for (Especialidad especialidad : listaEspecialidades) {
+            model.addElement(especialidad);
         }
+        
+//        EspecialidadData espeData = new EspecialidadData();
+//        List<Especialidad> listaEspecialidades = espeData.listarEspecialidad();
+////        DefaultComboBoxModel<Especialidad> model = new DefaultComboBoxModel<>(listaEspecialidades.toArray(new Especialidad[0]));
+////        jComboBox1.setModel(model);
+//        model = new DefaultComboBoxModel<>(listaEspecialidades.toArray(new Especialidad[0]));
+//        jComboBox1.setModel(model);
+    }
+
+    private void armarCabecera(){
+        P.addColumn("ID ");
+        P.addColumn("Nombre");
+        P.addColumn("Domicilio");
+        P.addColumn("Telefono");
+        jTable1.setModel(P);
+        P.setRowCount(0);
+    }
+    
+    private void cargarDatos(){
+        PrestadorData prestadorData = new PrestadorData();
+        Especialidad especialidadSeleccionada = (Especialidad) jComboBox1.getSelectedItem();
+        List<Prestador> prestadoresPorEspecialidad = prestadorData.buscarPrestadorPorEspecialidad(especialidadSeleccionada.getIdEspecialidad());
+        P.setRowCount(0);
+
+            for (Prestador prestador : prestadoresPorEspecialidad) {
+                P.addRow(new Object[]{prestador.getIdPrestador(), prestador.getNombre(),prestador.getDomicilio(),prestador.getTelefono()});
+            }
+    }
+    
 }
-}
+

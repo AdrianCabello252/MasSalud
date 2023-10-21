@@ -44,21 +44,21 @@ public class EspecialidadData {
     
     public List<Especialidad> listarEspecialidad(){
          String sql="SELECT * FROM especialidad ";
-        List<Especialidad> especie= new ArrayList<>();
+        List<Especialidad> listaEspecialidades= new ArrayList<>();
         try {
             PreparedStatement ps=con.prepareStatement (sql);
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
                 Especialidad especialidad=new Especialidad();
                 especialidad.setIdEspecialidad(rs.getInt("idEspecialidad"));
-                especialidad.setTipoEspecialidad(rs.getString("especialidad"));
-                especie.add(especialidad);
+                especialidad.setTipoEspecialidad(rs.getString("tipoEspecialidad"));
+                listaEspecialidades.add(especialidad);
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla" + ex.getMessage());
         }
-        return especie;
+        return listaEspecialidades;
     }
     
     public Especialidad buscarEspecialidad(int idEspec){

@@ -12,6 +12,7 @@ import mutualgrupo36.Entidades.Especialidad;
 import mutualgrupo36.Entidades.Prestador;
 
 public class PrestadorData {
+    
     private Connection con = null;
     private EspecialidadData esData;
 
@@ -19,6 +20,7 @@ public class PrestadorData {
         con = Conexion.getConexion();
     }
 
+    
     public void guardarPrestador(Prestador prestador) {
         String sql= "INSERT INTO prestador (nombre, dni, domicilio, telefono, idEspecialidad, estado)"
                 + " VALUES (?, ?, ?, ?, ?, ?)";
@@ -39,9 +41,9 @@ public class PrestadorData {
                      JOptionPane.showMessageDialog(null, "prestador guardado");
                  }
                  ps.close(); //para cerrar el objeto
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'prestador' ");
-                }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'prestador' ");
+            }
     }
     
     
@@ -61,22 +63,6 @@ public class PrestadorData {
         }
     }
 
-//    public Prestador buscarPrestador(int id) {
-//        String query = "SELECT * FROM Prestador WHERE id = ?";
-//        try (PreparedStatement stmt = connection.prepareStatement(query)) {
-//            stmt.setInt(1, id);
-//            ResultSet resultSet = stmt.executeQuery();
-//            if (resultSet.next()) {
-//                String nombre = resultSet.getString("nombre");
-//                String especialidad = resultSet.getString("especialidad"); // Ajusta esto según tus campos
-//                return new Prestador(id, nombre, especialidad);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return null; 
-//    }
-    
     
     public Prestador buscarPrestador(int idPrestador) {
     String query = "SELECT * FROM Prestador WHERE idPrestador = ?";
@@ -104,29 +90,53 @@ public class PrestadorData {
     return prestador;
     }
 
-    public Prestador buscarPrestadorPorEspecialidad(Especialidad especiali) {
-    String query = "SELECT idPrestador,nombre,dni,domicilio FROM Prestador WHERE idEspecialidad = ?";
-    Prestador prestador = null;
+
+    public List<Prestador> buscarPrestadorPorEspecialidad(int idEspecialidad) {
+    String query = "SELECT idPrestador, nombre, dni, domicilio FROM Prestador WHERE idEspecialidad = ?";
+    List<Prestador> prestadoresPorEspecialidad = new ArrayList<>();
 
     try (PreparedStatement stmt = con.prepareStatement(query)) {
-        Especialidad especialidad = new Especialidad(); //
-        stmt.setEspecialidad(1, idEspecialidad);        // cosas a arreglar para que funcione
-        prestador.setEspecialidad(especialidad);    //
+        stmt.setInt(1, idEspecialidad);
         ResultSet resultSet = stmt.executeQuery();
 
-        if (resultSet.next()) {
-        prestador = new Prestador();
-        prestador.setIdPrestador(resultSet.getInt("idPrestador"));
-        prestador.setNombre(resultSet.getString("nombre"));
-        prestador.setDni(resultSet.getInt("dni")); 
-        prestador.setDomicilio(resultSet.getString("domicilio")); 
+        while (resultSet.next()) {
+            Prestador prestador = new Prestador();
+            prestador.setIdPrestador(resultSet.getInt("idPrestador"));
+            prestador.setNombre(resultSet.getString("nombre"));
+            prestador.setDni(resultSet.getInt("dni"));
+            prestador.setDomicilio(resultSet.getString("domicilio"));
+            prestadoresPorEspecialidad.add(prestador);
         }
-        
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(null, e.getMessage());
     }
-    return prestador;
+    return prestadoresPorEspecialidad;
     }
+        
+        
+//    String query = "SELECT idPrestador,nombre,dni,domicilio FROM Prestador WHERE idEspecialidad = ?";
+//    Prestador prestador = null;
+//
+//    try (PreparedStatement stmt = con.prepareStatement(query)) {
+//        Especialidad especialidad = new Especialidad(); //
+//        stmt.setEspecialidad(1, idEspecialidad);        // cosas a arreglar para que funcione
+//        prestador.setEspecialidad(especialidad);    //
+//        ResultSet resultSet = stmt.executeQuery();
+//
+//        if (resultSet.next()) {
+//        prestador = new Prestador();
+//        prestador.setIdPrestador(resultSet.getInt("idPrestador"));
+//        prestador.setNombre(resultSet.getString("nombre"));
+//        prestador.setDni(resultSet.getInt("dni")); 
+//        prestador.setDomicilio(resultSet.getString("domicilio")); 
+//        }
+//        
+//    } catch (SQLException e) {
+//        JOptionPane.showMessageDialog(null, e.getMessage());
+//    }
+////    return prestador;
+    //}
+    
     
     public void eliminarPrestador(int idPrestador) {
         String query = "DELETE FROM Prestador WHERE idPrestador = ?";
