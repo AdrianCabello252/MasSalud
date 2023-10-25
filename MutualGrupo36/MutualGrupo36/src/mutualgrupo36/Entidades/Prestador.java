@@ -15,6 +15,14 @@ public class Prestador {
     public Prestador() {
     }
 
+    public Prestador(int idPrestador, String nombre, int dni, String domicilio, int telefono) {
+        this.idPrestador = idPrestador;
+        this.nombre = nombre;
+        this.dni = dni;
+        this.domicilio = domicilio;
+        this.telefono = telefono;
+    }
+    
     public Prestador(String nombre, int dni, Especialidad especialidad) {
         this.nombre = nombre;
         this.dni = dni;

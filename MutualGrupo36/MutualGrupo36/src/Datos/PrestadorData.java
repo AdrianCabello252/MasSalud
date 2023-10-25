@@ -78,11 +78,15 @@ public class PrestadorData {
         prestador.setNombre(resultSet.getString("nombre"));
         prestador.setDni(resultSet.getInt("dni")); 
         prestador.setDomicilio(resultSet.getString("domicilio")); 
+        prestador.setTelefono(resultSet.getInt("telefono"));
         Especialidad especialidad = new Especialidad(); 
         especialidad.setIdEspecialidad(resultSet.getInt("idEspecialidad"));
         prestador.setEspecialidad(especialidad);
 
-        }
+        }else{
+                 JOptionPane.showMessageDialog(null, "No existe alumno");
+             }
+             stmt.close();
         
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(null, e.getMessage());
@@ -92,7 +96,7 @@ public class PrestadorData {
 
 
     public List<Prestador> buscarPrestadorPorEspecialidad(int idEspecialidad) {
-    String query = "SELECT idPrestador, nombre, dni, domicilio FROM Prestador WHERE idEspecialidad = ?";
+    String query = "SELECT idPrestador, nombre, dni, domicilio, telefono FROM Prestador WHERE idEspecialidad = ?";
     List<Prestador> prestadoresPorEspecialidad = new ArrayList<>();
 
     try (PreparedStatement stmt = con.prepareStatement(query)) {
@@ -105,10 +109,11 @@ public class PrestadorData {
             prestador.setNombre(resultSet.getString("nombre"));
             prestador.setDni(resultSet.getInt("dni"));
             prestador.setDomicilio(resultSet.getString("domicilio"));
+            prestador.setTelefono(resultSet.getInt("telefono"));
             prestadoresPorEspecialidad.add(prestador);
         }
     } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, e.getMessage());
+        JOptionPane.showMessageDialog(null, "aca");
     }
     return prestadoresPorEspecialidad;
     }
@@ -177,7 +182,8 @@ public class PrestadorData {
             prestador.setIdPrestador(resultSet.getInt("idPrestador"));
             prestador.setNombre(resultSet.getString("nombre"));
             prestador.setDni(resultSet.getInt("dni")); 
-            prestador.setDomicilio(resultSet.getString("domicilio")); 
+            prestador.setDomicilio(resultSet.getString("domicilio"));
+            prestador.setTelefono(resultSet.getInt("telefono"));
             Especialidad especialidad = new Especialidad(); 
             especialidad.setIdEspecialidad(resultSet.getInt("idEspecialidad"));
             prestador.setEspecialidad(especialidad);
