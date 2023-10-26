@@ -8,7 +8,7 @@ package vistas;
 import Datos.EspecialidadData;
 import Datos.PrestadorData;
 import java.util.List;
-import javax.swing.DefaultComboBoxModel;
+//import javax.swing.DefaultComboBoxModel;
 import mutualgrupo36.Entidades.Especialidad;
 import mutualgrupo36.Entidades.Prestador;
 /**
@@ -17,13 +17,13 @@ import mutualgrupo36.Entidades.Prestador;
  */
 public class PlanillaPrestadorM extends javax.swing.JInternalFrame {
     EspecialidadData espeData= new EspecialidadData();
-    DefaultComboBoxModel<Especialidad> nuevomodel;
+//    DefaultComboBoxModel<Especialidad> nuevomodel;
     /**
      * Creates new form PlanillaPrestador
      */
     public PlanillaPrestadorM() {
         initComponents();
-        cargarCombo();
+ //       cargarCombo();
     }
 
     /**
@@ -44,9 +44,7 @@ public class PlanillaPrestadorM extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jTTelef = new javax.swing.JTextField();
-        jCEspec = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jtID = new javax.swing.JTextField();
@@ -84,15 +82,6 @@ public class PlanillaPrestadorM extends javax.swing.JInternalFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Telefono");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Especialidad");
-
-        jCEspec.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCEspecActionPerformed(evt);
-            }
-        });
 
         jButton2.setText("Guardar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -136,8 +125,8 @@ public class PlanillaPrestadorM extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel6)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
                                         .addComponent(jButton2))
                                     .addComponent(jLabel5))
                                 .addGap(86, 86, 86))
@@ -145,7 +134,6 @@ public class PlanillaPrestadorM extends javax.swing.JInternalFrame {
                                 .addComponent(jtID, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCEspec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                                 .addComponent(jTDNI)
@@ -179,17 +167,14 @@ public class PlanillaPrestadorM extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6))
+                        .addGap(75, 75, 75))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jTTelef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jCEspec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(40, 40, 40)
+                        .addGap(78, 78, 78)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -198,10 +183,6 @@ public class PlanillaPrestadorM extends javax.swing.JInternalFrame {
     private void jTDomicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTDomicActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTDomicActionPerformed
-
-    private void jCEspecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCEspecActionPerformed
-        
-    }//GEN-LAST:event_jCEspecActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
@@ -214,9 +195,9 @@ public class PlanillaPrestadorM extends javax.swing.JInternalFrame {
         pres.setDni(Integer.parseInt(jTDNI.getText()));
         pres.setDomicilio(jTDomic.getText());
         pres.setTelefono(Integer.parseInt(jTTelef.getText()));
-        Especialidad especialidad = new Especialidad();
-        especialidad.setIdEspecialidad(jCEspec.getSelectedIndex());
-        pres.setEspecialidad(especialidad);
+//        Especialidad especialidad = new Especialidad();
+//        especialidad.setIdEspecialidad(Integer.parseInt(jCEspec.getSelectedItem().toString()));
+//       pres.setEspecialidad(especialidad);
         presData.modificarPrestador(pres);
         jtNombre.setText("");
         jTDNI.setText("");
@@ -237,7 +218,7 @@ public class PlanillaPrestadorM extends javax.swing.JInternalFrame {
        jTDNI.setText(String.valueOf(pres.getDni()));
        jTDomic.setText(pres.getDomicilio());
        jTTelef.setText(String.valueOf(pres.getTelefono()));
-       jCEspec.setSelectedItem(pres.getEspecialidad());
+   //    jCEspec.setSelectedItem(pres.getEspecialidad());
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtIDActionPerformed
@@ -249,30 +230,28 @@ public class PlanillaPrestadorM extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<Especialidad> jCEspec;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField jTDNI;
     private javax.swing.JTextField jTDomic;
     private javax.swing.JTextField jTTelef;
     private javax.swing.JTextField jtID;
     private javax.swing.JTextField jtNombre;
     // End of variables declaration//GEN-END:variables
-private void cargarCombo(){
-        
-        nuevomodel = new DefaultComboBoxModel<>();
-        jCEspec.setModel(nuevomodel);
-
-        EspecialidadData espeData = new EspecialidadData();
-        List<Especialidad> listaEspecialidades = espeData.listarEspecialidad();
-
-        for (Especialidad especialidad : listaEspecialidades) {
-            nuevomodel.addElement(especialidad);
-        }
-
-}
+//private void cargarCombo(){
+//        
+//        nuevomodel = new DefaultComboBoxModel<>();
+//        jCEspec.setModel(nuevomodel);
+//
+//        EspecialidadData espeData = new EspecialidadData();
+//        List<Especialidad> listaEspecialidades = espeData.listarEspecialidad();
+//
+//        for (Especialidad especialidad : listaEspecialidades) {
+//            nuevomodel.addElement(especialidad);
+//        }
+//
+//}
 }

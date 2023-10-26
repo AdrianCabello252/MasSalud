@@ -35,9 +35,13 @@ public class Especialidad {
     public void setTipoEspecialidad(String tipoEspecialidad) {
         this.tipoEspecialidad = tipoEspecialidad;
     }
-    
+
     @Override
     public String toString() {
-    return tipoEspecialidad;
+        return tipoEspecialidad;
     }
+
+    
+    
+
 }

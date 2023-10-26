@@ -158,6 +158,19 @@ public class PrestadorMedVista extends javax.swing.JInternalFrame {
 //        } else {
 //        JOptionPane.showMessageDialog(null, "Selecciona una fila en la tabla de materias.");
 //        } 
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada == -1) {
+        JOptionPane.showMessageDialog(null, "Selecciona un prestador para eliminar.");
+        return;
+        }
+        
+        Object Objidpres = jTable1.getValueAt(filaSeleccionada, 0);
+        int idpres = Integer.parseInt(Objidpres.toString());
+        
+        pData.eliminarPrestador(idpres);
+        
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.removeRow(filaSeleccionada);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
