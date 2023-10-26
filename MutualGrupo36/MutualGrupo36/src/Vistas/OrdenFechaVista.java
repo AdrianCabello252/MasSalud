@@ -1,5 +1,5 @@
 
-package Vistas;
+package vistas;
 
 import Datos.AfiliadoData;
 import Datos.OrdenData;
