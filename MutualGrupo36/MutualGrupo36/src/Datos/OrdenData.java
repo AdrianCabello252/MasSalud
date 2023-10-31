@@ -211,14 +211,36 @@ public class OrdenData {
     }
 
 
-    
-    public List<Orden> listarOrdenesAfiliadoPrestador(int idPrestador, int idAfiliado){  
+     public List<Orden> listarOrdenesAfiliadoPrestador(int idAfiliado, int idPrestador) {
         List<Orden> ordenesAfiliadoPrestador = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM orden WHERE idAfiliado=? AND idPrestador = ?";
+            String sql = "SELECT * FROM orden WHERE";
+            boolean condicionesAgregadas = false;
+
+            if (idPrestador != 0) {
+                sql += " idPrestador = ?";
+                condicionesAgregadas = true;
+            }
+
+            if (idAfiliado != 0) {
+                if (condicionesAgregadas) {
+                    sql += " AND";
+                }
+                sql += " idAfiliado = ?";
+            }
+
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, idPrestador); 
-            ps.setInt(2, idAfiliado); 
+            int paramIndex = 1;
+
+            if (idPrestador != 0) {
+                ps.setInt(paramIndex, idPrestador);
+                paramIndex++;
+            }
+
+            if (idAfiliado != 0) {
+                ps.setInt(paramIndex, idAfiliado);
+            }
+
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Orden orden = new Orden();
@@ -242,5 +264,4 @@ public class OrdenData {
         return ordenesAfiliadoPrestador;
     }
 
-    
 }

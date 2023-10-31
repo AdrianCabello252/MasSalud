@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistas;
+package Vistas;
 
 import Datos.EspecialidadData;
 import Datos.PrestadorData;
 import java.util.List;
-//import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import mutualgrupo36.Entidades.Especialidad;
 import mutualgrupo36.Entidades.Prestador;
 /**
@@ -17,13 +17,13 @@ import mutualgrupo36.Entidades.Prestador;
  */
 public class PlanillaPrestadorM extends javax.swing.JInternalFrame {
     EspecialidadData espeData= new EspecialidadData();
-//    DefaultComboBoxModel<Especialidad> nuevomodel;
+    DefaultComboBoxModel<Especialidad> nuevomodel;
     /**
      * Creates new form PlanillaPrestador
      */
     public PlanillaPrestadorM() {
         initComponents();
- //       cargarCombo();
+        cargarCombo();
     }
 
     /**
@@ -35,19 +35,24 @@ public class PlanillaPrestadorM extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
         jtNombre = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTDNI = new javax.swing.JTextField();
-        jTDomic = new javax.swing.JTextField();
+        jtDNI = new javax.swing.JTextField();
+        jtDomic = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTTelef = new javax.swing.JTextField();
+        jtTelef = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jtID = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jcEstado = new javax.swing.JCheckBox();
+        jcEspec = new javax.swing.JComboBox<>();
 
         jtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,9 +69,9 @@ public class PlanillaPrestadorM extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Domicilio");
 
-        jTDomic.addActionListener(new java.awt.event.ActionListener() {
+        jtDomic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTDomicActionPerformed(evt);
+                jtDomicActionPerformed(evt);
             }
         });
 
@@ -103,14 +108,28 @@ public class PlanillaPrestadorM extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Especialidad");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Estado");
+
+        jcEstado.setText("jCheckBox1");
+
+        jcEspec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcEspecActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,21 +144,25 @@ public class PlanillaPrestadorM extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
+                                    .addComponent(jLabel5)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(1, 1, 1)
-                                        .addComponent(jButton2))
-                                    .addComponent(jLabel5))
-                                .addGap(86, 86, 86))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel6))))
+                                .addGap(101, 101, 101))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jtID, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                                .addComponent(jTDNI)
-                                .addComponent(jTDomic)
-                                .addComponent(jTTelef))
-                            .addComponent(jButton3))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton3)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                            .addComponent(jtDNI)
+                            .addComponent(jtDomic)
+                            .addComponent(jtTelef)
+                            .addComponent(jcEstado)
+                            .addComponent(jcEspec, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -158,51 +181,61 @@ public class PlanillaPrestadorM extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTDomic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(75, 75, 75))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jTTelef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78)))
+                    .addComponent(jLabel3)
+                    .addComponent(jtDomic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(jLabel5)
+                    .addComponent(jtTelef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jcEspec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jcEstado))
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTDomicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTDomicActionPerformed
+    private void jtDomicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtDomicActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTDomicActionPerformed
+    }//GEN-LAST:event_jtDomicActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        PrestadorData presData= new PrestadorData();
-        Prestador pres=new Prestador();
-        pres.setNombre(jtNombre.getText());
-        pres.setDni(Integer.parseInt(jTDNI.getText()));
-        pres.setDomicilio(jTDomic.getText());
-        pres.setTelefono(Integer.parseInt(jTTelef.getText()));
-//        Especialidad especialidad = new Especialidad();
-//        especialidad.setIdEspecialidad(Integer.parseInt(jCEspec.getSelectedItem().toString()));
-//       pres.setEspecialidad(especialidad);
-        presData.modificarPrestador(pres);
-        jtNombre.setText("");
-        jTDNI.setText("");
-        jTDomic.setText("");
-        jTTelef.setText("");
+    PrestadorData presData = new PrestadorData();
+    Prestador pres = new Prestador();
+
+    pres.setNombre(jtNombre.getText());
+//    pres.setDni(Integer.parseInt(jtDNI.getText()));
+    pres.setDomicilio(jtDomic.getText());
+    pres.setTelefono(Integer.parseInt(jtTelef.getText()));
+    Especialidad especialidadSeleccionada = (Especialidad) jcEspec.getSelectedItem();
+    if (especialidadSeleccionada == null) {
+    } else {
+        pres.setEspecialidad(especialidadSeleccionada);
+    }
+    pres.setEstado(jcEstado.isSelected());
+    presData.modificarPrestador(pres);
+
+    jtNombre.setText("");
+    jtDNI.setText("");
+    jtDomic.setText("");
+    jtTelef.setText("");
+    jcEstado.setSelected(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNombreActionPerformed
@@ -215,15 +248,19 @@ public class PlanillaPrestadorM extends javax.swing.JInternalFrame {
        Prestador pres= presData.buscarPrestador(id);
        
        jtNombre.setText(pres.getNombre());
-       jTDNI.setText(String.valueOf(pres.getDni()));
-       jTDomic.setText(pres.getDomicilio());
-       jTTelef.setText(String.valueOf(pres.getTelefono()));
+       jtDNI.setText(String.valueOf(pres.getDni()));
+       jtDomic.setText(pres.getDomicilio());
+       jtTelef.setText(String.valueOf(pres.getTelefono()));
    //    jCEspec.setSelectedItem(pres.getEspecialidad());
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtIDActionPerformed
+
+    private void jcEspecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcEspecActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcEspecActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -235,23 +272,29 @@ public class PlanillaPrestadorM extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTDNI;
-    private javax.swing.JTextField jTDomic;
-    private javax.swing.JTextField jTTelef;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<Especialidad> jcEspec;
+    private javax.swing.JCheckBox jcEstado;
+    private javax.swing.JTextField jtDNI;
+    private javax.swing.JTextField jtDomic;
     private javax.swing.JTextField jtID;
     private javax.swing.JTextField jtNombre;
+    private javax.swing.JTextField jtTelef;
     // End of variables declaration//GEN-END:variables
-//private void cargarCombo(){
-//        
-//        nuevomodel = new DefaultComboBoxModel<>();
-//        jCEspec.setModel(nuevomodel);
-//
-//        EspecialidadData espeData = new EspecialidadData();
-//        List<Especialidad> listaEspecialidades = espeData.listarEspecialidad();
-//
-//        for (Especialidad especialidad : listaEspecialidades) {
-//            nuevomodel.addElement(especialidad);
-//        }
-//
-//}
+
+    private void cargarCombo(){
+        
+        nuevomodel = new DefaultComboBoxModel<>();
+        jcEspec.setModel(nuevomodel);
+
+        EspecialidadData espeData = new EspecialidadData();
+        List<Especialidad> listaEspecialidades = espeData.listarEspecialidad();
+
+        for (Especialidad especialidad : listaEspecialidades) {
+            nuevomodel.addElement(especialidad);
+        }
+
+}
 }

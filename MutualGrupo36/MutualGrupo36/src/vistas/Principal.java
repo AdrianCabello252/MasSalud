@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistas;
+package Vistas;
+
 
 import java.awt.Dimension;
 import javax.swing.SwingUtilities;
@@ -34,11 +35,15 @@ public class Principal extends javax.swing.JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        jmenuCrearOrden = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -55,10 +60,24 @@ public class Principal extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 429, Short.MAX_VALUE)
+            .addGap(0, 433, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Afiliados");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem5.setText("Gestionar Afiliado");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem5);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Prestadores");
@@ -83,10 +102,10 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Ordenes");
-        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+        jmenuCrearOrden.setText("Ordenes");
+        jmenuCrearOrden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu3ActionPerformed(evt);
+                jmenuCrearOrdenActionPerformed(evt);
             }
         });
 
@@ -101,7 +120,7 @@ public class Principal extends javax.swing.JFrame {
                 jMenuItem3ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem3);
+        jmenuCrearOrden.add(jMenuItem3);
 
         jMenuItem1.setText("Orden por ID");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -109,9 +128,29 @@ public class Principal extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem1);
+        jmenuCrearOrden.add(jMenuItem1);
 
-        jMenuBar1.add(jMenu3);
+        jMenuItem7.setText("Crear Orden");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jmenuCrearOrden.add(jMenuItem7);
+
+        jMenuBar1.add(jmenuCrearOrden);
+
+        jMenu5.setText("Especialidades");
+
+        jMenuItem4.setText("Datos especialidades");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem4);
+
+        jMenuBar1.add(jMenu5);
 
         jMenu4.setText("Salir");
         jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -136,15 +175,11 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
-        
-    }//GEN-LAST:event_jMenu3ActionPerformed
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
         
@@ -164,27 +199,9 @@ public class Principal extends javax.swing.JFrame {
         jDesktopPane1.add(m);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        jDesktopPane1.removeAll();
-        jDesktopPane1.repaint();
-        OrdenFechaVista ov=new OrdenFechaVista();
-         Dimension desktopSize = jDesktopPane1.getSize();
-            Dimension frameSize = ov.getSize();
-            
-            int x = (desktopSize.width - frameSize.width) / 2;
-            int y = (desktopSize.height - frameSize.height) / 2;
-            ov.setLocation(x, y);
-        ov.setVisible(true);
-        jDesktopPane1.add(ov);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
     private void jMenuItem2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem2MouseClicked
         
     }//GEN-LAST:event_jMenuItem2MouseClicked
-
-    private void jMenuItem3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem3MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3MouseClicked
 
     private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
         
@@ -194,19 +211,75 @@ public class Principal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jMenu4MouseClicked
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        jDesktopPane1.repaint();
+        Especialidades espe=new Especialidades();
+        espe.setVisible(true);
+        jDesktopPane1.add(espe);
+        jDesktopPane1.moveToFront(espe);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+       
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        jDesktopPane1.repaint();
+        AfiliadoVista av=new AfiliadoVista();
+        av.setVisible(true);
+        jDesktopPane1.add(av);
+        jDesktopPane1.moveToFront(av);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jmenuCrearOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuCrearOrdenActionPerformed
+
+    }//GEN-LAST:event_jmenuCrearOrdenActionPerformed
+
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
         OrdenAfiliadoPrestadorVista ovpv=new OrdenAfiliadoPrestadorVista();
-         Dimension desktopSize = jDesktopPane1.getSize();
-            Dimension frameSize = ovpv.getSize();
-            
-            int x = (desktopSize.width - frameSize.width) / 2;
-            int y = (desktopSize.height - frameSize.height) / 2;
-            ovpv.setLocation(x, y);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension frameSize = ovpv.getSize();
+
+        int x = (desktopSize.width - frameSize.width) / 2;
+        int y = (desktopSize.height - frameSize.height) / 2;
+        ovpv.setLocation(x, y);
         ovpv.setVisible(true);
         jDesktopPane1.add(ovpv);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        OrdenFechaVista ov=new OrdenFechaVista();
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension frameSize = ov.getSize();
+
+        int x = (desktopSize.width - frameSize.width) / 2;
+        int y = (desktopSize.height - frameSize.height) / 2;
+        ov.setLocation(x, y);
+        ov.setVisible(true);
+        jDesktopPane1.add(ov);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3MouseClicked
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        PlanillaCrearOrden pco=new PlanillaCrearOrden();
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension frameSize = pco.getSize();
+            
+        int x = (desktopSize.width - frameSize.width) / 2;
+        int y = (desktopSize.height - frameSize.height) / 2;
+        pco.setLocation(x, y);
+        pco.setVisible(true);
+        jDesktopPane1.add(pco);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,11 +320,15 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenu jmenuCrearOrden;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,5 +1,5 @@
 
-package vistas;
+package Vistas;
 
 import Datos.AfiliadoData;
 import Datos.OrdenData;
@@ -50,16 +50,16 @@ public class OrdenFechaVista extends javax.swing.JInternalFrame {
         jbBuscar = new javax.swing.JButton();
         jbLimpiar = new javax.swing.JButton();
         jdFecha = new com.toedter.calendar.JDateChooser();
+        jbSalir = new javax.swing.JButton();
 
-        setClosable(true);
         setResizable(true);
         setPreferredSize(new java.awt.Dimension(400, 300));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("Consultar ordenes Por Fecha");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 51));
         jLabel2.setText("Fecha");
 
@@ -76,7 +76,7 @@ public class OrdenFechaVista extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jtOrdenes);
 
-        jbEliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jbEliminar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jbEliminar.setForeground(new java.awt.Color(0, 0, 102));
         jbEliminar.setText("Eliminar");
         jbEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +85,7 @@ public class OrdenFechaVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jbModificar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jbModificar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jbModificar.setForeground(new java.awt.Color(0, 0, 102));
         jbModificar.setText("Modificar");
         jbModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +94,7 @@ public class OrdenFechaVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jbBuscar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jbBuscar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jbBuscar.setForeground(new java.awt.Color(0, 0, 51));
         jbBuscar.setText("Buscar");
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +103,7 @@ public class OrdenFechaVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jbLimpiar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jbLimpiar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jbLimpiar.setForeground(new java.awt.Color(0, 0, 102));
         jbLimpiar.setText("Limpiar");
         jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -112,52 +112,68 @@ public class OrdenFechaVista extends javax.swing.JInternalFrame {
             }
         });
 
+        jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jbLimpiar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbModificar)
-                .addGap(39, 39, 39)
-                .addComponent(jbEliminar)
-                .addGap(43, 43, 43))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(89, 89, 89)
+                            .addComponent(jLabel1))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(27, 27, 27)
+                            .addComponent(jbLimpiar)
+                            .addGap(56, 56, 56)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jbModificar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jbEliminar)
+                                    .addGap(32, 32, 32))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(9, 9, 9)
+                                    .addComponent(jbSalir)
+                                    .addGap(0, 0, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
+                        .addGap(27, 27, 27)
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jdFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jbBuscar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(jLabel1)))
+                        .addComponent(jdFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(jbBuscar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jdFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbBuscar))
-                .addGap(27, 27, 27)
+                    .addComponent(jbBuscar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2)
+                        .addComponent(jdFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbEliminar)
                     .addComponent(jbModificar)
+                    .addComponent(jbEliminar)
                     .addComponent(jbLimpiar))
-                .addContainerGap())
+                .addGap(26, 26, 26)
+                .addComponent(jbSalir))
         );
 
         pack();
@@ -180,6 +196,7 @@ public class OrdenFechaVista extends javax.swing.JInternalFrame {
         return;
         }
 
+    try {      
         Object ObjidOrden = jtOrdenes.getValueAt(filaSeleccionada, 0);
         Object ObjidAfiliado = jtOrdenes.getValueAt(filaSeleccionada, 1); 
         Object ObjidPrestador = jtOrdenes.getValueAt(filaSeleccionada, 2); 
@@ -205,6 +222,10 @@ public class OrdenFechaVista extends javax.swing.JInternalFrame {
         orden.setImporte(importe);
         
         orData.modificarOrden(orden);
+        
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Has ingresado un carácter incorrecto en alguna de las celdas");
+    } 
 
     }//GEN-LAST:event_jbModificarActionPerformed
 
@@ -231,6 +252,13 @@ public class OrdenFechaVista extends javax.swing.JInternalFrame {
         model.setRowCount(0);
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        Principal principal = new Principal();
+        principal.repaint();
+        this.dispose();
+        principal.setEnabled(true);
+    }//GEN-LAST:event_jbSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -240,6 +268,7 @@ public class OrdenFechaVista extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbEliminar;
     private javax.swing.JButton jbLimpiar;
     private javax.swing.JButton jbModificar;
+    private javax.swing.JButton jbSalir;
     private com.toedter.calendar.JDateChooser jdFecha;
     private javax.swing.JTable jtOrdenes;
     // End of variables declaration//GEN-END:variables

@@ -132,4 +132,36 @@ public class AfiliadoData {
             }
         return afiliado;
     }
+    
+    public Afiliado buscarAfiliadoPorDNI(int dni) {
+    String sql = "SELECT nombre, apellido, dni, domicilio, telefono, idAfiliado FROM afiliado WHERE dni = ? AND estado = 1";
+    Afiliado afiliado = null;
+
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, dni);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            afiliado = new Afiliado();
+            afiliado.setIdAfiliado(rs.getInt("idAfiliado"));
+            afiliado.setNombre(rs.getString("nombre"));
+            afiliado.setApellido(rs.getString("apellido"));
+            afiliado.setDni(rs.getInt("dni"));
+            afiliado.setDomicilio(rs.getString("domicilio"));
+            afiliado.setTelefono(rs.getInt("telefono"));
+            afiliado.setActivo(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "No existe afiliado con el DNI proporcionado");
+        }
+
+        ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla afiliados");
+    }
+
+    return afiliado;
+    }
+
+    
 }     

@@ -1,5 +1,5 @@
 
-package vistas;
+package Vistas;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;

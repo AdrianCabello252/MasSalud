@@ -1,5 +1,9 @@
 
-package vistas;
+package Vistas;
+/**
+ *
+ * @author pinch
+ */
 
 import Datos.AfiliadoData;
 import Datos.OrdenData;
@@ -49,20 +53,20 @@ public class OrdenAfiliadoPrestadorVista extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jtfIDPrestador = new javax.swing.JTextField();
         jbLimpiar = new javax.swing.JButton();
+        jbSalir = new javax.swing.JButton();
 
-        setClosable(true);
         setResizable(true);
         setPreferredSize(new java.awt.Dimension(400, 300));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 102));
         jLabel1.setText("Ordenes Por Afiliado y/o Prestador");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 102));
         jLabel2.setText("ID Afiliado");
 
-        jbBuscar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jbBuscar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jbBuscar.setForeground(new java.awt.Color(0, 0, 102));
         jbBuscar.setText("Buscar");
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +88,7 @@ public class OrdenAfiliadoPrestadorVista extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jtOrdenes);
 
-        jbModificar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jbModificar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jbModificar.setForeground(new java.awt.Color(0, 0, 102));
         jbModificar.setText("Modificar");
         jbModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +97,7 @@ public class OrdenAfiliadoPrestadorVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jbEliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jbEliminar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jbEliminar.setForeground(new java.awt.Color(0, 0, 102));
         jbEliminar.setText("Eliminar");
         jbEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -102,16 +106,23 @@ public class OrdenAfiliadoPrestadorVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 102));
         jLabel3.setText("ID Prestador");
 
-        jbLimpiar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jbLimpiar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jbLimpiar.setForeground(new java.awt.Color(0, 0, 102));
         jbLimpiar.setText("Limpiar");
         jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbLimpiarActionPerformed(evt);
+            }
+        });
+
+        jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
             }
         });
 
@@ -123,71 +134,77 @@ public class OrdenAfiliadoPrestadorVista extends javax.swing.JInternalFrame {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel2)
+                        .addGap(32, 32, 32)
+                        .addComponent(jtfIDAfiliado, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(jbBuscar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtfIDPrestador, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(32, 32, 32)
-                                .addComponent(jtfIDAfiliado, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(jbBuscar)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jbLimpiar)
-                .addGap(48, 48, 48)
-                .addComponent(jbModificar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbEliminar)
-                .addGap(36, 36, 36))
+                        .addComponent(jtfIDPrestador, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(21, 21, 21)
+                .addComponent(jbLimpiar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbModificar)
+                .addGap(33, 33, 33)
+                .addComponent(jbEliminar)
+                .addGap(55, 55, 55))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addComponent(jbSalir)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jtfIDAfiliado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(4, 4, 4)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jtfIDPrestador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jbBuscar)))
-                .addGap(18, 18, 18)
+                        .addGap(28, 28, 28))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbBuscar)
+                        .addGap(5, 5, 5)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfIDPrestador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(45, 45, 45)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbModificar)
-                    .addComponent(jbLimpiar)
-                    .addComponent(jbEliminar))
-                .addContainerGap(42, Short.MAX_VALUE))
+                    .addComponent(jbEliminar)
+                    .addComponent(jbLimpiar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(jbSalir)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         String idAfiliadoText = jtfIDAfiliado.getText();
         String idPrestadorText = jtfIDPrestador.getText();
         int idAfiliado = 0;
         int idPrestador = 0;
-
+    try {
         if (!idAfiliadoText.isEmpty()) {
             idAfiliado = Integer.parseInt(idAfiliadoText);
         }
@@ -201,8 +218,12 @@ public class OrdenAfiliadoPrestadorVista extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Debes proporcionar al menos un valor válido.");
         }
+    } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Has ingresado un carácter incorrecto. Debes ingresar números enteros válidos.");   
+    }    
     }//GEN-LAST:event_jbBuscarActionPerformed
 
+    
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
         int filaSeleccionada = jtOrdenes.getSelectedRow();
         if (filaSeleccionada == -1) {
@@ -210,6 +231,7 @@ public class OrdenAfiliadoPrestadorVista extends javax.swing.JInternalFrame {
         return;
         }
 
+    try {       
         Object ObjidOrden = jtOrdenes.getValueAt(filaSeleccionada, 0);
         Object ObjidAfiliado = jtOrdenes.getValueAt(filaSeleccionada, 1); 
         Object ObjidPrestador = jtOrdenes.getValueAt(filaSeleccionada, 2); 
@@ -235,8 +257,12 @@ public class OrdenAfiliadoPrestadorVista extends javax.swing.JInternalFrame {
         orden.setImporte(importe);
         
         orData.modificarOrden(orden);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Has ingresado un carácter incorrecto en alguna de las celdas");
+    }     
     }//GEN-LAST:event_jbModificarActionPerformed
 
+    
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
         int filaSeleccionada = jtOrdenes.getSelectedRow();
         if (filaSeleccionada == -1) {
@@ -249,12 +275,20 @@ public class OrdenAfiliadoPrestadorVista extends javax.swing.JInternalFrame {
         m.removeRow(filaSeleccionada);
     }//GEN-LAST:event_jbEliminarActionPerformed
 
+    
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
         jtfIDAfiliado.setText("");
         jtfIDPrestador.setText("");
         DefaultTableModel model = (DefaultTableModel) jtOrdenes.getModel();
         model.setRowCount(0);
     }//GEN-LAST:event_jbLimpiarActionPerformed
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        Principal principal = new Principal();
+        principal.repaint();
+        this.dispose();
+        principal.setEnabled(true);
+    }//GEN-LAST:event_jbSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -266,6 +300,7 @@ public class OrdenAfiliadoPrestadorVista extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbEliminar;
     private javax.swing.JButton jbLimpiar;
     private javax.swing.JButton jbModificar;
+    private javax.swing.JButton jbSalir;
     private javax.swing.JTable jtOrdenes;
     private javax.swing.JTextField jtfIDAfiliado;
     private javax.swing.JTextField jtfIDPrestador;
@@ -287,6 +322,11 @@ public class OrdenAfiliadoPrestadorVista extends javax.swing.JInternalFrame {
         OrdenData orData = new OrdenData();
         List<Orden> ordenesAfiliadoPrestador = orData.listarOrdenesAfiliadoPrestador(idAfiliado, idPrestador);
         m.setRowCount(0);
+        
+        if (ordenesAfiliadoPrestador.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "No se encontraron órdenes para el afiliado o prestador seleccionado.");
+        return; 
+        }
 
         for (Orden orden : ordenesAfiliadoPrestador) {
             Afiliado afiliado = orden.getAfiliado();

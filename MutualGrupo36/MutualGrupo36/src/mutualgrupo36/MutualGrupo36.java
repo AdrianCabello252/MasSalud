@@ -9,7 +9,8 @@ import mutualgrupo36.Entidades.Afiliado;
 import Datos.EspecialidadData;
 import Datos.OrdenData;
 import Datos.PrestadorData;
-import vistas.OrdenVista;
+import Vistas.AfiliadoVista;
+import Vistas.Especialidades;
 import java.time.LocalDate;
 import java.util.List;
 import javax.swing.JDesktopPane;
@@ -19,7 +20,10 @@ import javax.swing.SwingUtilities;
 import mutualgrupo36.Entidades.Especialidad;
 import mutualgrupo36.Entidades.Orden;
 import mutualgrupo36.Entidades.Prestador;
-import vistas.PrestadorMedVista;
+import Vistas.PrestadorMedVista;
+
+
+
 public class MutualGrupo36 {
  
     public static void main(String[] args) {
@@ -183,19 +187,19 @@ public class MutualGrupo36 {
     ////Prueba para abrir Vistas: Prestador    
 //        SwingUtilities.invokeLater(() -> {
 //        // Crear un JFrame para contener el JDesktopPane
-//        JFrame frame = new JFrame("Prueba de PrestadorMedVista");
+//        JFrame frame = new JFrame("Prueba de AfiliadoVista");
 //        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //        frame.setSize(800, 600);
 //
 //        JDesktopPane desktop = new JDesktopPane();
-//        JInternalFrame PrestadorMedVistaFrame = new PrestadorMedVista();
-//        desktop.add(PrestadorMedVistaFrame);
+//        JInternalFrame AfiliadoVistaFrame = new AfiliadoVista();
+//        desktop.add(AfiliadoVistaFrame);
 //        
-//        PrestadorMedVistaFrame.setSize(400, 300);
-//        PrestadorMedVistaFrame.setLocation(200, 150);
+//        AfiliadoVistaFrame.setSize(400, 300);
+//        AfiliadoVistaFrame.setLocation(200, 150);
 //
 //        // Hacer visible el JInternalFrame
-//        PrestadorMedVistaFrame.setVisible(true);
+//        AfiliadoVistaFrame.setVisible(true);
 //
 //        // Agregar el JDesktopPane al JFrame
 //        frame.add(desktop);
@@ -203,6 +207,57 @@ public class MutualGrupo36 {
 //        // Hacer visible el JFrame
 //        frame.setVisible(true);
 //    });
+        
+        
+        
+//////Prueba para abrir Vistas: Especialidades  
+//    SwingUtilities.invokeLater(() -> {
+//    // Crear un JFrame para contener el JDesktopPane
+//    JFrame frame = new JFrame("Prueba de EspecialidadesVista");
+//    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//    frame.setSize(800, 600);
+//
+//    JDesktopPane desktop = new JDesktopPane();
+//    JInternalFrame EspecialidadesFrame = new Especialidades();
+//    desktop.add(EspecialidadesFrame);
+//
+//    EspecialidadesFrame.setSize(400, 300);
+//    EspecialidadesFrame.setLocation(200, 150);
+//
+//    // Hacer visible el JInternalFrame
+//    EspecialidadesFrame.setVisible(true);
+//
+//    // Agregar el JDesktopPane al JFrame
+//    frame.add(desktop);
+//
+//    // Hacer visible el JFrame
+//    frame.setVisible(true);
+//});
+
+
+////Prueba para abrir Vistas: Afiliado
+    SwingUtilities.invokeLater(() -> {
+    // Crear un JFrame para contener el JDesktopPane
+    JFrame frame = new JFrame("Prueba de Afiliado");
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setSize(800, 600);
+
+    JDesktopPane desktop = new JDesktopPane();
+    JInternalFrame AfiliadoVistaFrame = new AfiliadoVista();
+    desktop.add(AfiliadoVistaFrame);
+
+    AfiliadoVistaFrame.setSize(400, 300);
+    AfiliadoVistaFrame.setLocation(200, 150);
+
+    // Hacer visible el JInternalFrame
+    AfiliadoVistaFrame.setVisible(true);
+
+    // Agregar el JDesktopPane al JFrame
+    frame.add(desktop);
+
+    // Hacer visible el JFrame
+    frame.setVisible(true);
+});
 
 
         }

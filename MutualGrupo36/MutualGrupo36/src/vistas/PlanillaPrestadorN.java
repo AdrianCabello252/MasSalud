@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistas;
+package Vistas;
 
 import Datos.EspecialidadData;
 import Datos.PrestadorData;
@@ -189,22 +189,42 @@ public class PlanillaPrestadorN extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        PrestadorData presData= new PrestadorData();
-        Prestador pres=new Prestador();
-        pres.setNombre(jTNombre.getText());
-        pres.setDni(Integer.parseInt(jTDNI.getText()));
-        pres.setDomicilio(jTDomic.getText());
-        pres.setTelefono(Integer.parseInt(jTTelef.getText()));
-        Especialidad especialidad = new Especialidad();
-        especialidad.setIdEspecialidad(jComboBox1.getSelectedIndex());
-        pres.setEspecialidad(especialidad);
-        pres.setEstado(jCEstado.isSelected());
-        presData.guardarPrestador(pres);
-        jTNombre.setText("");
-        jTDNI.setText("");
-        jTDomic.setText("");
-        jTTelef.setText("");
-        jCEstado.setSelected(false);
+//        PrestadorData presData= new PrestadorData();
+//        Prestador pres=new Prestador();
+//        pres.setNombre(jTNombre.getText());
+//        pres.setDni(Integer.parseInt(jTDNI.getText()));
+//        pres.setDomicilio(jTDomic.getText());
+//        pres.setTelefono(Integer.parseInt(jTTelef.getText()));
+//        Especialidad especialidadSeleccionada = (Especialidad) jComboBox1.getSelectedItem();
+//        Especialidad especialidad = new Especialidad();
+//        pres.setEspecialidad(especialidadSeleccionada);
+//        especialidad.setIdEspecialidad(jComboBox1.getSelectedIndex());
+//        pres.setEspecialidad(especialidad);
+//        pres.setEstado(jCEstado.isSelected());
+//        presData.guardarPrestador(pres);
+//        jTNombre.setText("");
+//        jTDNI.setText("");
+//        jTDomic.setText("");
+//        jTTelef.setText("");
+//        jCEstado.setSelected(false);
+
+PrestadorData presData = new PrestadorData();
+Prestador pres = new Prestador();
+
+pres.setNombre(jTNombre.getText());
+pres.setDni(Integer.parseInt(jTDNI.getText()));
+pres.setDomicilio(jTDomic.getText());
+pres.setTelefono(Integer.parseInt(jTTelef.getText()));
+pres.setEspecialidad((Especialidad) jComboBox1.getSelectedItem()); 
+pres.setEstado(jCEstado.isSelected());
+
+presData.guardarPrestador(pres);
+
+jTNombre.setText("");
+jTDNI.setText("");
+jTDomic.setText("");
+jTTelef.setText("");
+jCEstado.setSelected(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
@@ -225,7 +245,8 @@ public class PlanillaPrestadorN extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTNombre;
     private javax.swing.JTextField jTTelef;
     // End of variables declaration//GEN-END:variables
-private void cargarCombo(){
+
+    private void cargarCombo(){
         
         nuevomodel = new DefaultComboBoxModel<>();
         jComboBox1.setModel(nuevomodel);

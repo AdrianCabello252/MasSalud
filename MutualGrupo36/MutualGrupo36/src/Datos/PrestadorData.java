@@ -48,19 +48,34 @@ public class PrestadorData {
     
     
     public void modificarPrestador(Prestador prestador) {
-        String query = "UPDATE prestador SET nombre =?, domicilio =?, telefono =?, idEspecialidad =? WHERE idPrestador =?";
-        try (PreparedStatement stmt = con.prepareStatement(query)) {
-            stmt.setString(1, prestador.getNombre());
-            stmt.setString(2, prestador.getDomicilio());
-            stmt.setInt(3, prestador.getTelefono());
-            stmt.setInt(4, prestador.getEspecialidad().getIdEspecialidad()); 
-            stmt.setInt(5, prestador.getIdPrestador());
-            stmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Prestador modificado");
-        } catch (SQLException e) {
-            e.printStackTrace();
-         
-        }
+//        String query = "UPDATE prestador SET nombre =?, domicilio =?, telefono =?, idEspecialidad =?, estado=? WHERE idPrestador =?";
+//        try (PreparedStatement stmt = con.prepareStatement(query)) {
+//            stmt.setString(1, prestador.getNombre());
+//            stmt.setString(2, prestador.getDomicilio());
+//            stmt.setInt(3, prestador.getTelefono());
+//            stmt.setInt(4, prestador.getEspecialidad().getIdEspecialidad()); 
+//            stmt.setInt(5, prestador.getIdPrestador());
+//            stmt.setBoolean(6, prestador.isEstado());
+//            stmt.executeUpdate();
+//            JOptionPane.showMessageDialog(null, "Prestador modificado");
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+
+    String query = "UPDATE prestador SET nombre = ?, domicilio = ?, telefono = ?, idEspecialidad = ?, estado = ? WHERE idPrestador = ?";
+    try (PreparedStatement stmt = con.prepareStatement(query)) {
+        stmt.setString(1, prestador.getNombre());
+        stmt.setString(2, prestador.getDomicilio());
+        stmt.setInt(3, prestador.getTelefono());
+        stmt.setInt(4, prestador.getEspecialidad().getIdEspecialidad());
+        stmt.setBoolean(5, prestador.isEstado());
+        stmt.setInt(6, prestador.getIdPrestador());
+
+        stmt.executeUpdate();
+        JOptionPane.showMessageDialog(null, "Prestador modificado");
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
     }
 
     
@@ -84,7 +99,7 @@ public class PrestadorData {
         prestador.setEspecialidad(especialidad);
 
         }else{
-                 JOptionPane.showMessageDialog(null, "No existe alumno");
+                 JOptionPane.showMessageDialog(null, "No existe ese prestador");
              }
              stmt.close();
         

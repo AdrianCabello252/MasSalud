@@ -94,6 +94,10 @@ public class Afiliado {
     public boolean setActivo() {
         return Activo;
     }
+    
+    public boolean getActivo() {
+        return Activo;
+    }
 
     public void setActivo(boolean Activo) {
         this.Activo = Activo;

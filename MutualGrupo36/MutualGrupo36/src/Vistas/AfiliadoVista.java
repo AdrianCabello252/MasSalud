@@ -7,7 +7,6 @@ import Datos.OrdenData;
 import javax.swing.JOptionPane;
 import java.util.List;
 import mutualgrupo36.Entidades.Afiliado;
-import mutualgrupo36.Entidades.Orden;
 
 /**
  *
@@ -17,18 +16,21 @@ public class AfiliadoVista extends javax.swing.JInternalFrame {
     //    DefaultTableModel modelo;
     OrdenData orData = new OrdenData();
     AfiliadoData afiData = new AfiliadoData();
-
+    
+    public List<Afiliado> listaA;
+    
     DefaultTableModel modelo = new DefaultTableModel ();
     
     public boolean isCellEditable(int row, int column) {
         return column != 0;
-
     }
+    
     public AfiliadoVista() {
         initComponents();
+        listaA=afiData.listarAfiliados();
         jTabla.setModel(modelo);
         armarCabecera();
-        
+        cargarTabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -57,6 +59,8 @@ public class AfiliadoVista extends javax.swing.JInternalFrame {
         jtBuscarDNI = new javax.swing.JTextField();
         jcbEstado = new javax.swing.JCheckBox();
         jbBuscar = new javax.swing.JButton();
+        jbSalir = new javax.swing.JButton();
+        lbLimpiar = new javax.swing.JButton();
 
         jlAfiliado.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jlAfiliado.setText("Afiliado");
@@ -112,7 +116,32 @@ public class AfiliadoVista extends javax.swing.JInternalFrame {
 
         jlBuscarDNI.setText("Dni");
 
+        jtBuscarDNI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtBuscarDNIKeyReleased(evt);
+            }
+        });
+
         jbBuscar.setText("Buscar");
+        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarActionPerformed(evt);
+            }
+        });
+
+        jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
+
+        lbLimpiar.setText("Limpiar");
+        lbLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lbLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,31 +170,41 @@ public class AfiliadoVista extends javax.swing.JInternalFrame {
                                             .addComponent(jtDNI, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jtApellido, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jtNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jcbEstado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addComponent(jcbEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(lbLimpiar)))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jbGuardar)
                                 .addGap(13, 13, 13))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(jlAfiliado)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(162, 162, 162)
+                                .addComponent(jlAfiliado))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(140, 140, 140)
+                                .addComponent(jlTituloBuscar)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addComponent(jlBuscarDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jtBuscarDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
-                        .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
+                .addComponent(jtBuscarDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(jbBuscar)
-                .addGap(29, 29, 29))
+                .addGap(38, 38, 38))
             .addGroup(layout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(jlTituloBuscar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(jbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(106, 106, 106)
+                        .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(169, 169, 169)
+                        .addComponent(jbSalir)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -193,27 +232,27 @@ public class AfiliadoVista extends javax.swing.JInternalFrame {
                     .addComponent(jlTelefono)
                     .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlEstado)
-                    .addComponent(jbGuardar)
-                    .addComponent(jcbEstado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jlEstado)
+                        .addComponent(jbGuardar)
+                        .addComponent(jcbEstado))
+                    .addComponent(lbLimpiar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jlTituloBuscar)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jlBuscarDNI)
-                            .addComponent(jtBuscarDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbBuscar))
-                        .addGap(49, 49, 49))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jbEditar)
-                            .addComponent(jbEliminar))
-                        .addContainerGap())))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlBuscarDNI)
+                    .addComponent(jtBuscarDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbBuscar))
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbEditar)
+                    .addComponent(jbEliminar))
+                .addGap(19, 19, 19)
+                .addComponent(jbSalir))
         );
 
         pack();
@@ -239,6 +278,8 @@ public class AfiliadoVista extends javax.swing.JInternalFrame {
         Afiliado afiliado = new Afiliado(nombre, apellido, dni, domicilio, telefono, estado);
         afiData.guardarAfiliado(afiliado);
         cargarAfiliado(afiliado);
+        listaA=afiData.listarAfiliados();
+        cargarTabla();
 
         jtNombre.setText("");
         jtApellido.setText("");
@@ -255,12 +296,23 @@ public class AfiliadoVista extends javax.swing.JInternalFrame {
     
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
      
-        int filaS = jTabla.getSelectedRow();
-        if (filaS!=-1){
-        modelo.removeRow(filaS);
-       }else {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar una fila para eliminar");
-        }
+//        int filaS = jTabla.getSelectedRow();
+//        if (filaS!=-1){
+//        modelo.removeRow(filaS);
+//       }else {
+//            JOptionPane.showMessageDialog(this, "Debe seleccionar una fila para eliminar");
+//        }
+    int filaSeleccionada = jTabla.getSelectedRow();
+    if (filaSeleccionada != -1) {
+        Object objIdAfiliado = modelo.getValueAt(filaSeleccionada, 0);
+        int idAfiliado = Integer.parseInt(objIdAfiliado.toString());
+        afiData.borrarAfiliado(idAfiliado);
+        modelo.removeRow(filaSeleccionada);
+    } else {
+        JOptionPane.showMessageDialog(this, "Debe seleccionar una fila para eliminar");
+    }
+
+
     }//GEN-LAST:event_jbEliminarActionPerformed
 
     private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
@@ -286,6 +338,59 @@ public class AfiliadoVista extends javax.swing.JInternalFrame {
 //        Afiliado afiliado = afiData.buscarAfiliado(nombreAfiliado);
                 
     }//GEN-LAST:event_jbEditarActionPerformed
+
+    private void jtBuscarDNIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtBuscarDNIKeyReleased
+
+    }//GEN-LAST:event_jtBuscarDNIKeyReleased
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        Principal principal = new Principal();
+        principal.repaint();
+        this.dispose();
+        principal.setEnabled(true);
+    }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
+        String dniText = jtBuscarDNI.getText();
+        int dni = 0;
+        try {    
+        if (!dniText.isEmpty()) {
+            dni = Integer.parseInt(dniText);
+        }else {
+            JOptionPane.showMessageDialog(null, "Debes proporcionar un valor válido.");
+        }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Has ingresado un carácter incorrecto.");   
+        }
+        afiData.buscarAfiliadoPorDNI(dni);
+        Afiliado afiliadoEncontrado = afiData.buscarAfiliadoPorDNI(dni);
+        
+        if (afiliadoEncontrado != null) {
+ 
+        DefaultTableModel modeloTabla = (DefaultTableModel) jTabla.getModel();
+       
+        modeloTabla.addRow(new Object[]{
+        afiliadoEncontrado.getIdAfiliado(),
+        afiliadoEncontrado.getNombre(),
+        afiliadoEncontrado.getApellido(),
+        afiliadoEncontrado.getDni(),
+        afiliadoEncontrado.getDomicilio(),
+        afiliadoEncontrado.getTelefono()
+    });
+        
+        jTabla.setModel(modeloTabla);
+    } else {
+        JOptionPane.showMessageDialog(null, "Afiliado no encontrado.");
+    }
+       
+    }//GEN-LAST:event_jbBuscarActionPerformed
+
+    private void lbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbLimpiarActionPerformed
+
+        jtBuscarDNI.setText("");
+        DefaultTableModel model = (DefaultTableModel) jTabla.getModel();
+        model.setRowCount(0);
+    }//GEN-LAST:event_lbLimpiarActionPerformed
        
 
     
@@ -297,6 +402,7 @@ public class AfiliadoVista extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbEditar;
     private javax.swing.JButton jbEliminar;
     private javax.swing.JButton jbGuardar;
+    private javax.swing.JButton jbSalir;
     private javax.swing.JCheckBox jcbEstado;
     private javax.swing.JLabel jlAfiliado;
     private javax.swing.JLabel jlApellido;
@@ -313,6 +419,7 @@ public class AfiliadoVista extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtDomicilio;
     private javax.swing.JTextField jtNombre;
     private javax.swing.JTextField jtTelefono;
+    private javax.swing.JButton lbLimpiar;
     // End of variables declaration//GEN-END:variables
 
 private void armarCabecera (){
@@ -332,6 +439,13 @@ private void cargarAfiliado(Afiliado afiliado){
     
     modelo.addRow(new Object[]{afiliado.getIdAfiliado(), afiliado.getNombre(), afiliado.getApellido(), afiliado.getDni(),afiliado.getDomicilio(), afiliado.getTelefono(), afiliado.getActivo()}); //falta estado
     
+}
+
+public void cargarTabla(){
+    modelo.setRowCount(0);
+    for(Afiliado afiliado: listaA){
+        modelo.addRow(new Object[]{afiliado.getIdAfiliado(), afiliado.getNombre(), afiliado.getApellido(), afiliado.getDni(),afiliado.getDomicilio(), afiliado.getTelefono(), afiliado.getActivo()});
+    }
 }
 
 }
